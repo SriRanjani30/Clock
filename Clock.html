@@ -11,9 +11,9 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #282c34;
             color: white;
             font-family: Arial, sans-serif;
+            transition: background-color 0.5s;
         }
         .clock {
             font-size: 60px;
@@ -26,11 +26,30 @@
             font-size: 30px;
             margin-top: 10px;
         }
+        .controls {
+            margin-top: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="clock" id="clock">Loading...</div>
     <div class="date" id="date">Loading...</div>
+    
+    <div class="controls">
+        <label for="bgColor">Select Background Color:</label>
+        <select id="bgColor">
+            <option value="#282c34">Default</option>
+            <option value="#ff5733">Red</option>
+            <option value="#33ff57">Green</option>
+            <option value="#3357ff">Blue</option>
+            <option value="#f1c40f">Yellow</option>
+        </select>
+    </div>
 
     <script>
         function updateClockAndDate() {
@@ -44,9 +63,15 @@
             document.getElementById('date').innerText = date;
         }
 
+        function changeBackgroundColor() {
+            const selectedColor = document.getElementById('bgColor').value;
+            document.body.style.backgroundColor = selectedColor;
+        }
+
+        document.getElementById('bgColor').addEventListener('change', changeBackgroundColor);
+
         setInterval(updateClockAndDate, 1000);
         updateClockAndDate(); // Initial call
     </script>
 </body>
 </html>
-
