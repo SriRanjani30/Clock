@@ -13,14 +13,22 @@
             height: 100vh;
             color: white;
             font-family: Arial, sans-serif;
-            transition: background-color 0.5s;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .clock {
             font-size: 60px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             padding: 20px;
             border-radius: 15px;
             text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
         .date {
             font-size: 30px;
@@ -33,6 +41,8 @@
             padding: 10px;
             font-size: 16px;
             margin-right: 10px;
+            border-radius: 5px;
+            border: none;
         }
     </style>
 </head>
@@ -66,6 +76,9 @@
         function changeBackgroundColor() {
             const selectedColor = document.getElementById('bgColor').value;
             document.body.style.backgroundColor = selectedColor;
+            // Disable gradient animation when a color is selected
+            document.body.style.background = selectedColor;
+            document.body.style.animation = 'none';
         }
 
         document.getElementById('bgColor').addEventListener('change', changeBackgroundColor);
